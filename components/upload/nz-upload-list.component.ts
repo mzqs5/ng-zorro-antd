@@ -59,6 +59,7 @@ export class NzUploadListComponent implements OnChanges {
       file.linkProps = typeof file.linkProps === 'string' ? JSON.parse(file.linkProps) : file.linkProps;
     });
     this._items = list;
+    this.itemsChange.emit(list);
   }
   get items(): UploadFile[] {
     return this._items;
@@ -66,7 +67,7 @@ export class NzUploadListComponent implements OnChanges {
   @Input() icons: ShowUploadListInterface;
   @Input() onPreview: (file: UploadFile) => void;
   @Input() onRemove: (file: UploadFile) => void;
-
+  @Output() readonly itemsChange: EventEmitter<UploadFile[]> = new EventEmitter<UploadFile[]>();
   // #endregion
 
   // #region styles
